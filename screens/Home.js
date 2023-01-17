@@ -1,7 +1,9 @@
-import { useNavigation } from '@react-navigation/core'
-import React from 'react'
-import { StyleSheet, Text, TouchableOpacity, View, Image, StatusBar } from 'react-native'
-import { getAuth } from "firebase/auth"
+import { useNavigation } from '@react-navigation/core';
+import React from 'react';
+import { StyleSheet, Text, TouchableOpacity, View, Image, StatusBar } from 'react-native';
+import { getAuth } from "firebase/auth";
+
+//"../config/firebase"
 
 function Home() {
     const navigation = useNavigation();

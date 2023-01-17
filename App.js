@@ -8,8 +8,6 @@ import Game from "./screens/Games";
 import Note from "./screens/Note";
 import Home from "./screens/Home";
 
-
-
 const Stack = createNativeStackNavigator();
 
 function App() {
@@ -23,9 +21,11 @@ function App() {
             { headerShown: false }
           }
         />
+
         <Stack.Screen
           name="Home"
-          component={Home} />
+          component={Home}
+          />
         <Stack.Screen
           name="Esports"
           component={Esports} />

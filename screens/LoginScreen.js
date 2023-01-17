@@ -1,7 +1,8 @@
 import { useNavigation } from '@react-navigation/core'
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, KeyboardAvoidingView, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { app as firebase } from "../config/firebase";
 
 const LoginScreen = () => {
 
@@ -14,7 +15,7 @@ const LoginScreen = () => {
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
             if (user) {
-                navigation.navigate("Home")
+                navigation.replace("Home")
             }
         })
 
@@ -39,44 +40,48 @@ const LoginScreen = () => {
     }
 
     return (
-        <KeyboardAvoidingView
+        <ScrollView
             style={styles.container}
-            behavior="padding"
         >
-            <View style={styles.inputContainer}>
-                <TextInput
-                    placeholder="Email"
-                    value={email}
-                    onChangeText={text => setEmail(text)}
-                    style={styles.input}
-                />
+            <View
+                style={styles.containerStyle}
+            >
 
-                <TextInput
-                    placeholder="Password"
-                    value={password}
-                    onChangeText={text => setPassword(text)}
-                    style={styles.input}
-                    secureTextEntry
-                />
-                <View style={styles.centerButtons}>
-                    <View style={styles.buttonContainer}>
-                        <TouchableOpacity
-                            onPress={handleLogIn}
-                            style={styles.button}
-                        >
-                            <Text style={styles.buttonText}>Login</Text>
-                        </TouchableOpacity>
+                <View style={styles.inputContainer}>
+                    <TextInput
+                        placeholder="Email"
+                        value={email}
+                        onChangeText={text => setEmail(text)}
+                        style={styles.input}
+                    />
 
-                        <TouchableOpacity
-                            onPress={handleSignUp}
-                            style={[styles.button, styles.buttonOutLine]}
-                        >
-                            <Text style={styles.buttonOutLineText}>Register</Text>
-                        </TouchableOpacity>
+                    <TextInput
+                        placeholder="Password"
+                        value={password}
+                        onChangeText={text => setPassword(text)}
+                        style={styles.input}
+                        secureTextEntry
+                    />
+                    <View style={styles.centerButtons}>
+                        <View style={styles.buttonContainer}>
+                            <TouchableOpacity
+                                onPress={handleLogIn}
+                                style={styles.button}
+                            >
+                                <Text style={styles.buttonText}>Login</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity
+                                onPress={handleSignUp}
+                                style={[styles.button, styles.buttonOutLine]}
+                            >
+                                <Text style={styles.buttonOutLineText}>Register</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </View>
             </View>
-        </KeyboardAvoidingView>
+        </ScrollView>
     )
 }
 
@@ -84,7 +89,9 @@ export default LoginScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: "center",
+    },
+    containerStyle: {
+        paddingTop: "50%",
         alignItems: "center"
     },
     inputContainer: {
@@ -99,7 +106,6 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         width: "70%",
-
         marginTop: 40,
     },
     centerButtons: {

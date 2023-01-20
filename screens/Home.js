@@ -1,9 +1,9 @@
 import { useNavigation } from '@react-navigation/core';
+
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, Image, StatusBar } from 'react-native';
+import { StyleSheet, TouchableOpacity, View, Image, StatusBar, Dimensions } from 'react-native';
 import { getAuth } from "firebase/auth";
 
-//"../config/firebase"
 
 function Home() {
     const navigation = useNavigation();
@@ -18,7 +18,7 @@ function Home() {
     }
     return (
         <View style={styles.container}>
-            <View style={styles.signCointainer}>
+            {/*<View style={styles.signCointainer}>
                 <Text>Email: {auth.currentUser?.email}</Text>
             </View>
             <TouchableOpacity
@@ -27,28 +27,19 @@ function Home() {
             >
                 <Text style={styles.buttonText}>Sign out</Text>
             </TouchableOpacity>
-
+    */}
             <View style={styles.row}>
-
-                <TouchableOpacity
-                    onPress={() => navigation.navigate("Esports")}>
-
-                    <Image
-                        style={styles.image}
-                        source={require("../assets/images/esport.jpg")}
-                    />
-                </TouchableOpacity>
-
+                <View style={styles.esportsContainer}>
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate("AddContent")}>
+                        <Image
+                            style={styles.image}
+                            source={require("../assets/images/Esports_ikona.png")}
+                        />
+                    </TouchableOpacity>
+                </View>
                 <View style={styles.space}></View>
 
-                <TouchableOpacity
-                    onPress={() => navigation.navigate("Sports")}>
-
-                    <Image
-                        style={styles.image}
-                        source={require("../assets/images/football.jpg")}
-                    />
-                </TouchableOpacity>
             </View>
             <View style={styles.row}>
                 <TouchableOpacity
@@ -56,7 +47,7 @@ function Home() {
                 >
                     <Image
                         style={styles.image}
-                        source={require("../assets/images/games.jpg")}
+                        source={require("../assets/images/GameNews.png")}
                     />
                 </TouchableOpacity>
                 <View style={styles.space}></View>
@@ -64,7 +55,7 @@ function Home() {
                     onPress={() => navigation.navigate("Note")}>
                     <Image
                         style={styles.image}
-                        source={require("../assets/images/note-taking.png")}
+                        source={require("../assets/images/Notes.png")}
                     />
                 </TouchableOpacity>
             </View>
@@ -78,12 +69,27 @@ export default Home;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#621b86',
         alignItems: 'center',
     },
-    image: {
-        width: 180,
-        height: 150,
+    esportsContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingLeft: 17
+    },
+    image_esports: {
+        width: 350,
+        height: 340,
+        borderRadius: 15,
+    },
+    image_Gamew_news: {
+        width: 204,
+        height: 264,
+        borderRadius: 15,
+    },
+    image_notes: {
+        width: 140,
+        height: 250,
         borderRadius: 15,
     },
     space: {
@@ -114,5 +120,5 @@ const styles = StyleSheet.create({
     },
     signCointainer: {
         paddingTop: 25
-    }
+    },
 });

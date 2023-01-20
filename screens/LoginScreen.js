@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/core'
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView } from 'react-native';
+import { View, StyleSheet, TextInput, TouchableOpacity, ScrollView, Image } from 'react-native';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { app as firebase } from "../config/firebase";
 
@@ -46,7 +46,11 @@ const LoginScreen = () => {
             <View
                 style={styles.containerStyle}
             >
-
+                <View>
+                    <Image
+                        source={require("../assets/images/profile_user.png")}
+                    />
+                </View>
                 <View style={styles.inputContainer}>
                     <TextInput
                         placeholder="Email"
@@ -62,23 +66,29 @@ const LoginScreen = () => {
                         style={styles.input}
                         secureTextEntry
                     />
-                    <View style={styles.centerButtons}>
-                        <View style={styles.buttonContainer}>
-                            <TouchableOpacity
-                                onPress={handleLogIn}
-                                style={styles.button}
-                            >
-                                <Text style={styles.buttonText}>Login</Text>
-                            </TouchableOpacity>
 
-                            <TouchableOpacity
-                                onPress={handleSignUp}
-                                style={[styles.button, styles.buttonOutLine]}
-                            >
-                                <Text style={styles.buttonOutLineText}>Register</Text>
-                            </TouchableOpacity>
-                        </View>
+                    <View style={styles.buttonContainer}>
+                        <TouchableOpacity
+                            onPress={handleLogIn}
+                        >
+                            <Image
+                                style={styles.image}
+                                source={require("../assets/images/login.png")}
+                            />
+                        </TouchableOpacity>
+
+                        <View style={styles.space} />
+
+                        <TouchableOpacity
+                            onPress={handleSignUp}
+                        >
+                            <Image
+                                style={styles.image}
+                                source={require("../assets/images/register.png")}
+                            />
+                        </TouchableOpacity>
                     </View>
+
                 </View>
             </View>
         </ScrollView>
@@ -89,16 +99,18 @@ export default LoginScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: "#060b30"
     },
     containerStyle: {
-        paddingTop: "50%",
+        paddingTop: "25%",
         alignItems: "center"
     },
     inputContainer: {
-        width: '80%'
+        width: '80%',
+        paddingTop: 35
     },
     input: {
-        backgroundColor: "white",
+        backgroundColor: "#d4d4d4",
         paddingHorizontal: 15,
         paddingVertical: 10,
         borderRadius: 10,
@@ -107,6 +119,7 @@ const styles = StyleSheet.create({
     buttonContainer: {
         width: "70%",
         marginTop: 40,
+        paddingLeft: "15%",
     },
     centerButtons: {
         justifyContent: 'center',
@@ -119,23 +132,13 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         alignItems: "center",
     },
-    buttonOutLine: {
-        backgroundColor: "white",
-        marginTop: 5,
-        borderColor: "#0782F9",
-        borderWidth: 2,
-
+    image: {
+        borderRadius: 15,
+        width: 210,
+        height: 60
     },
-    buttonText: {
-        color: "white",
-        fontWeight: "700",
-        fontSize: 16,
-
-    },
-    buttonOutLineText: {
-        color: "#0782F9",
-        fontWeight: "700",
-        fontSize: 16,
+    space: {
+        paddingTop: 15
     }
 
 

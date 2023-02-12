@@ -1,16 +1,25 @@
+import { StyleSheet, View, Text, ScrollView, Image, TextInput, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/core'
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView, Image } from 'react-native';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { app as firebase } from "../config/firebase";
 
-const LoginScreen = () => {
+
+const SignUp = () => {
+
+    const navigation = useNavigation();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const auth = getAuth();
 
-    const navigation = useNavigation();
+    const handleSignUp = () => {
+        createUserWithEmailAndPassword(auth, email, password)
+            .then(userCredentials => {
+                const user = userCredentials.user;
+                console.log('Registered with:', user.email);
+            })
+            .catch(error => alert(error.message))
+    }
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
@@ -21,24 +30,6 @@ const LoginScreen = () => {
 
         return unsubscribe;
     }, [])
-
-    const handleSignUp = () => {
-        createUserWithEmailAndPassword(auth, email, password)
-            .then(userCredentials => {
-                const user = userCredentials.user;
-                console.log('Registered with:', user.email);
-            })
-            .catch(error => alert(error.message))
-    }
-    const handleLogIn = () => {
-        signInWithEmailAndPassword(auth, email, password)
-            .then(userCredentials => {
-                const user = userCredentials.user;
-                console.log('Logged in with:', user.email);
-            })
-            .catch(error => alert(error.message))
-    }
-
     return (
         <ScrollView
             style={styles.container}
@@ -69,23 +60,27 @@ const LoginScreen = () => {
                 </View>
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity
-                        onPress={handleLogIn}
+                        onPress={handleSignUp}
                     >
                         <Image
-                            style={styles.image}
-                            source={require("../assets/images/login.png")}
-                        />
+                                style={styles.image}
+                                source={require("../assets/images/register.png")}
+                            />
                     </TouchableOpacity>
                     <View style={styles.row}>
-                        <Text style={styles.text}>You don't have an account? - </Text>
+                        <Text style={styles.text}>You have an account? - </Text>
 
-                        <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
+                        <TouchableOpacity onPress={() => navigation.navigate("LoginScreen")}>
 
-                            <Text style={styles.text2}>Sign Up</Text>
+                            <Text style={styles.text2}>Log In</Text>
 
                         </TouchableOpacity>
                     </View>
 
+                    {/* <Image
+                                style={styles.image}
+                                source={require("../assets/images/register.png")}
+                            />*/}
 
                 </View>
 
@@ -95,7 +90,9 @@ const LoginScreen = () => {
     )
 }
 
-export default LoginScreen;
+
+export default SignUp;
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -145,6 +142,4 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: "row"
     }
-
-
 })

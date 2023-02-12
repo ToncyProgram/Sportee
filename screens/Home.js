@@ -1,24 +1,17 @@
 import { useNavigation } from '@react-navigation/core';
 
 import React from 'react';
-import { StyleSheet, TouchableOpacity, View, Image, StatusBar, Dimensions } from 'react-native';
+import { StyleSheet, TouchableOpacity, View, Image, StatusBar, Dimensions, ScrollView } from 'react-native';
 import { getAuth } from "firebase/auth";
 
 
 function Home() {
     const navigation = useNavigation();
-    const auth = getAuth();
-    const handleSignOut = () => {
-        auth
-            .signOut()
-            .then(() => {
-                navigation.replace("LoginScreen")
-            })
-            .catch(error => alert(error.message))
-    }
+
     return (
-        <View style={styles.container}>
-            {/*<View style={styles.signCointainer}>
+        <ScrollView style={styles.container}>
+            <View style={styles.view}>
+                {/*<View style={styles.signCointainer}>
                 <Text>Email: {auth.currentUser?.email}</Text>
             </View>
             <TouchableOpacity
@@ -28,39 +21,40 @@ function Home() {
                 <Text style={styles.buttonText}>Sign out</Text>
             </TouchableOpacity>
     */}
-            <View style={styles.row}>
-                <View style={styles.esportsContainer}>
+                <View style={styles.row}>
+                    <View style={styles.esportsContainer}>
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate("AddContent")}>
+                            <Image
+                                style={styles.image}
+                                source={require("../assets/images/Esports_ikona.png")}
+                            />
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.space}></View>
+
+                </View>
+                <View style={styles.row}>
                     <TouchableOpacity
-                        onPress={() => navigation.navigate("AddContent")}>
+                        onPress={() => navigation.navigate("Games")}
+                    >
                         <Image
                             style={styles.image}
-                            source={require("../assets/images/Esports_ikona.png")}
+                            source={require("../assets/images/GameNews.png")}
+                        />
+                    </TouchableOpacity>
+                    <View style={styles.space}></View>
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate("MySpace")}>
+                        <Image
+                            style={styles.image}
+                            source={require("../assets/images/mySpace.png")}
                         />
                     </TouchableOpacity>
                 </View>
-                <View style={styles.space}></View>
-
+                <StatusBar style="auto" />
             </View>
-            <View style={styles.row}>
-                <TouchableOpacity
-                    onPress={() => navigation.navigate("Games")}
-                >
-                    <Image
-                        style={styles.image}
-                        source={require("../assets/images/GameNews.png")}
-                    />
-                </TouchableOpacity>
-                <View style={styles.space}></View>
-                <TouchableOpacity
-                    onPress={() => navigation.navigate("Note")}>
-                    <Image
-                        style={styles.image}
-                        source={require("../assets/images/Notes.png")}
-                    />
-                </TouchableOpacity>
-            </View>
-            <StatusBar style="auto" />
-        </View>
+        </ScrollView>
     )
 }
 
@@ -70,6 +64,9 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#621b86',
+
+    },
+    view: {
         alignItems: 'center',
     },
     esportsContainer: {

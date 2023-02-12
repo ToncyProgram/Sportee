@@ -2,7 +2,6 @@ import { useNavigation } from '@react-navigation/core';
 
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View, Image, StatusBar, Dimensions, ScrollView } from 'react-native';
-import { getAuth } from "firebase/auth";
 
 
 function Home() {
@@ -24,10 +23,10 @@ function Home() {
                 <View style={styles.row}>
                     <View style={styles.esportsContainer}>
                         <TouchableOpacity
-                            onPress={() => navigation.navigate("AddContent")}>
+                            onPress={() => navigation.navigate("Esports")}>
                             <Image
                                 style={styles.image}
-                                source={require("../assets/images/Esports_ikona.png")}
+                                source={require("../assets/images/esportsImage.png")}
                             />
                         </TouchableOpacity>
                     </View>
@@ -64,10 +63,10 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#621b86',
-
     },
     view: {
         alignItems: 'center',
+        paddingBottom: 15
     },
     esportsContainer: {
         justifyContent: 'center',

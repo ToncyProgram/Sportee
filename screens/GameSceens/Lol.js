@@ -1,62 +1,35 @@
-import { useState, useEffect } from "react";
-
-import { View, StyleSheet, Text, ActivityIndicator } from 'react-native';
-import axios from "axios";
+import { useNavigation } from '@react-navigation/core';
+import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
 export default function Lol() {
-
-    const [result, setResult] = useState(null);
-    const [loading, setLoading] = useState(false);
-
-    const getLcsStandings = () => {
-
-        setLoading(true);
-        axios
-            .get(
-                'https://league-of-legends-esports.p.rapidapi.com/teams',
-                {
-                    params: { name: 'G2' },
-                    headers: {
-                        'X-RapidAPI-Key': '5125c5e510msh318246a45a78db3p14aa09jsn1c9681e4b154',
-                        'X-RapidAPI-Host': 'league-of-legends-esports.p.rapidapi.com'
-                    }
-                }
-            )
-            .then((response) => {
-                let data = response.data;
-                setResult(data);
-            })
-            .catch((error) => {
-                console.log(error);
-            })
-            .finally(() => {
-                setLoading(false);
-            });
-    };
-
-    useEffect(() => {
-        getLcsStandings();
-    }, []);
-
+    const navigation = useNavigation();
     return (
         <View style={styles.container}>
-            {loading && <ActivityIndicator size={"large"} />}
-            {result && result.length > 0 && (
-                <ScrollView>
-                    {result.map((element, index) => (
-                        <View
-                            key={index}>
-                            {
-                                <View>
-                                    <Text>{element.firsName}</Text>
-                                </View>
+            <View style={styles.spacing}>
+                <View style={styles.row}>
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate("LEC")}
+                    >
+                        <Image
+                            style={styles.image}
+                            source={require("../../assets/images/LEC.png")}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate("LCS")}
+                    >
+                        <Image
+                            style={styles.image}
+                            source={require("../../assets/images/LCS.png")}
+                        />
+                    </TouchableOpacity>
+                </View>
+            </View>
 
-                            }
-                        </View>
+            <View style={{ flexDirection: "row", justifyContent: "space-between", paddingHorizontal: 55 }}>
+                <Text style={styles.title}>LEC</Text>
+                <Text style={styles.title}>LCS</Text>
 
-                    ))}
-                </ScrollView>
-            )
-            }
+            </View>
         </View>
     )
 }
@@ -65,6 +38,25 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "#060b30",
+    },
+    title: {
+        color: "white",
+        fontSize: 30,
+        fontWeight: "bold"
+    },
+    image: {
+        width: 150,
+        height: 150,
+        borderRadius: 35
+    },
+    spacing: {
+        paddingTop: 25,
+        paddingHorizontal: 10
+
+    },
+    row: {
+        flexDirection: "row",
+        justifyContent: "space-between",
     },
 
 });

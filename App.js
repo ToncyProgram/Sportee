@@ -3,8 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/core';
 import { onAuthStateChanged, getAuth } from 'firebase/auth';
 import React, { useState, createContext, useContext, useEffect } from "react";
-import { async } from '@firebase/util';
-import { Image, Text, Button, TouchableOpacity, StyleSheet, SafeAreaView, View, ActivityIndicator } from 'react-native';
+import { Image, TouchableOpacity, SafeAreaView, View, ActivityIndicator } from 'react-native';
 
 import LoginScreen from "./screens/LoginScreen";
 import Esports from "./screens/Esports";
@@ -13,6 +12,9 @@ import Note from "./screens/Note";
 import Home from "./screens/Home";
 import AddContent from "./screens/AddContent";
 import Lol from "./screens/GameSceens/Lol";
+import LEC from "./screens/GameSceens/LEC";
+import LCS from "./screens/GameSceens/LCS";
+import Schedule from "./screens/Schedule";
 import Profile from "./screens/Profile";
 import SignUp from "./screens/SignUp";
 import Chat from "./screens/Chat";
@@ -255,6 +257,42 @@ function ScreensStack() {
             backgroundColor: '#46b0fb',
           },
           headerRight: () => (<MySpaceLogo />)
+        }}
+      />
+      <Stack.Screen
+        name="LEC"
+        component={LEC}
+        options={{
+          title: "League of Legends",
+          headerTintColor: '#4156e9',
+          headerStyle: {
+            backgroundColor: '#0c155b',
+          },
+          headerRight: () => (<EsportsLogo />)
+        }}
+      />
+      <Stack.Screen
+        name="LCS"
+        component={LCS}
+        options={{
+          title: "League of Legends",
+          headerTintColor: '#4156e9',
+          headerStyle: {
+            backgroundColor: '#0c155b',
+          },
+          headerRight: () => (<EsportsLogo />)
+        }}
+      />
+      <Stack.Screen
+        name="Schedule"
+        component={Schedule}
+        options={{
+          title: "League of Legends",
+          headerTintColor: '#4156e9',
+          headerStyle: {
+            backgroundColor: '#0c155b',
+          },
+          headerRight: () => (<EsportsLogo />)
         }}
       />
     </Stack.Navigator>

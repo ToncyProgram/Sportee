@@ -8,24 +8,6 @@ export default function Note() {
 
     const [modalIsVisible, setModalIsVisible] = useState(false);
     const [Goals, setGoals] = useState([]);
-    const prviAlert = () => {
-        Alert.alert(
-            'Želite li izraditi bilješku?',
-            "",
-            [
-                {
-                    text: 'Da',
-                    onPress: (startAddGoalHandler)
-                },
-                {
-                    text: 'Ne',
-                    onPress: () => console.log('No Pressed'), style: 'cancel'
-                },
-            ],
-            { cancelable: false },
-        );
-    };
-
 
     function startAddGoalHandler() {
         setModalIsVisible(true);

@@ -1,7 +1,6 @@
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import React, {
     useState,
-    useEffect,
     useLayoutEffect,
     useCallback
 } from "react";
@@ -33,7 +32,6 @@ export default function Chat() {
         const q = query(collectionRef, orderBy("createdAt", "desc"));
 
         const unsubscribe = onSnapshot(q, snapshot => {
-            console.log("sent");
             setMessages(
                 snapshot.docs.map(doc => ({
                     _id: doc.id,
@@ -83,14 +81,14 @@ export default function Chat() {
                                 right: {
                                     backgroundColor: '#060b30',
                                 }
+                                
                             }}
                             textStyle={{
                                 left: {
                                     color: '#fff',
                                 },
+                                
                             }}
-
-
                         />
                     );
                 }}

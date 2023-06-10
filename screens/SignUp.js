@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, ScrollView, Image, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, ScrollView, Image, TextInput, TouchableOpacity, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/core'
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import React, { useEffect, useState } from 'react';
@@ -18,7 +18,13 @@ const SignUp = () => {
                 const user = userCredentials.user;
                 console.log('Registered with:', user.email);
             })
-            .catch(error => alert(error.message))
+            .catch(error => {
+                if (error.code === "auth/weak-password") {
+                  Alert.alert("Error", "Password should be at least 6 characters");
+                } else {
+                  Alert.alert("Error", error.message);
+                }
+              });
     }
 
     useEffect(() => {

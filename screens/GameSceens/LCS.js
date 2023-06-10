@@ -19,7 +19,7 @@ export default function LCS() {
                 'https://league-of-legends-esports.p.rapidapi.com/teams',
                 {
                     headers: {
-                        'X-RapidAPI-Key': '1c78a37e73mshf7922a8ef7a52ffp114848jsna13a4da90e9a',
+                        'X-RapidAPI-Key': 'c521c65fb4msh466513ef3ffc3b2p1bb15ajsn577620e5ea7f',
                         'X-RapidAPI-Host': 'league-of-legends-esports.p.rapidapi.com'
                     }
                 }

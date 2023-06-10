@@ -26,7 +26,7 @@ function Home() {
                             onPress={() => navigation.navigate("Esports")}>
                             <Image
                                 style={styles.image}
-                                source={require("../assets/images/esportsImage.png")}
+                                source={require("../assets/images/Esports_ikona.png")}
                             />
                         </TouchableOpacity>
                     </View>

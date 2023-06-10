@@ -1,8 +1,7 @@
 import { useNavigation } from '@react-navigation/core'
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView, Image } from 'react-native';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { app as firebase } from "../config/firebase";
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView, Image, Alert } from 'react-native';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 const LoginScreen = () => {
 
@@ -22,14 +21,21 @@ const LoginScreen = () => {
         return unsubscribe;
     }, [])
 
-
     const handleLogIn = () => {
         signInWithEmailAndPassword(auth, email, password)
             .then(userCredentials => {
                 const user = userCredentials.user;
                 console.log('Logged in with:', user.email);
             })
-            .catch(error => alert(error.message))
+            .catch(error => {
+                if (error.code === "auth/wrong-password") {
+                  Alert.alert("Error", "Wrong password");
+                } else if (error.code === "auth/user-not-found") {
+                  Alert.alert("Error", "User not found");
+                } else {
+                  Alert.alert("Error", error.message);
+                }
+              });
     }
 
     return (

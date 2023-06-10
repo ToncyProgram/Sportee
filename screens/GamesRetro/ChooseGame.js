@@ -1,7 +1,8 @@
-import React, { useState } from "react"
+import React from 'react';
+import { StyleSheet, View, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { View, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
-export default function MySpace() {
+
+export default function ChooseGame() {
 
     const navigation = useNavigation();
     return (
@@ -10,20 +11,20 @@ export default function MySpace() {
             <View style={styles.container}>
                 <TouchableOpacity
                     style={styles.picContainer}
-                    onPress={() => navigation.navigate("Chat")}
+                    onPress={() => navigation.navigate("Snake")}
                 >
                     <Image
                         style={styles.image}
-                        source={require("../assets/images/slika_friendlist_myspace.png")}
+                        source={require("../../assets/images/snake.png")}
                     />
                 </TouchableOpacity>
                 <TouchableOpacity
-                    onPress={() => navigation.navigate("Note")}
+                    onPress={() => navigation.navigate("FlappyBirdGame")}
                     style={styles.picContainer}
                 >
                     <Image
-                        style={styles.image}
-                        source={require("../assets/images/slika_notes_myspace.png")}
+                        style={styles.imageBall}
+                        source={require("../../assets/images/game_icon1.png")}
                     />
                 </TouchableOpacity>
                 <TouchableOpacity
@@ -32,7 +33,7 @@ export default function MySpace() {
                 >
                     <Image
                         style={styles.image}
-                        source={require("../assets/images/slika_games_myspace.png")}
+                        
                     />
                 </TouchableOpacity>
                 <TouchableOpacity
@@ -41,8 +42,8 @@ export default function MySpace() {
                 >
                     <Image
                         style={styles.image}
+
                         
-                        source={require("../assets/images/slika_timezones_myspace.png")}
                     />
                 </TouchableOpacity>
 
@@ -50,6 +51,8 @@ export default function MySpace() {
         </ScrollView>
     )
 }
+
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -62,12 +65,14 @@ const styles = StyleSheet.create({
         paddingTop: 10,
         paddingBottom: 20
     },
-    image: {
-        width: 350,
-        height: 200,
+    imageBall: {
+        width: 180,
+        height: 180,
 
     },
-    center: {
+    image: {
+        width: 180 ,
+        height: 180,
 
     }
 })

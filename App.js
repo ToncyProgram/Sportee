@@ -20,6 +20,19 @@ import SignUp from "./screens/SignUp";
 import Chat from "./screens/Chat";
 
 import MySpace from './screens/MySpace';
+import TimeZones from './screens/TimeZones';
+
+import ChooseGame from './screens/GamesRetro/ChooseGame'
+import Snake from './screens/GamesRetro/SnakeGame/Snake'
+import FlappyBirdGame from './screens/GamesRetro/FlappyBird/FlappyBirdGame'
+
+import CounterStrike from './screens/CSGO/CounterStrike'
+import PlayedMatches from './screens/CSGO/PlayedMatches'
+import UpcomingMatches from './screens/CSGO/UpcomingMatches'
+
+import Tournament from "./screens/Tournament"
+import Bracket from "./screens/Bracket"
+
 
 const auth = getAuth();
 
@@ -91,8 +104,6 @@ function GameNewsLogo() {
   );
 }
 
-
-
 function NotesLogo() {
   const navigation = useNavigation();
   return (
@@ -111,7 +122,6 @@ function NotesLogo() {
   );
 }
 
-
 function MySpaceLogo() {
   const navigation = useNavigation();
   return (
@@ -129,7 +139,6 @@ function MySpaceLogo() {
     </View>
   );
 }
-
 function ScreensStack() {
   return (
     <Stack.Navigator>
@@ -167,6 +176,30 @@ function ScreensStack() {
         component={Esports}
         options={{
           title: "E-sports",
+          headerTintColor: '#4d64ff',
+          headerStyle: {
+            backgroundColor: '#0c155b',
+          },
+          headerRight: () => (<EsportsLogo />),
+        }}
+      />
+      <Stack.Screen
+        name="Tournament"
+        component={Tournament}
+        options={{
+          title: "Online Tournament",
+          headerTintColor: '#4d64ff',
+          headerStyle: {
+            backgroundColor: '#0c155b',
+          },
+          headerRight: () => (<EsportsLogo />),
+        }}
+      />
+      <Stack.Screen
+        name="Bracket"
+        component={Bracket}
+        options={{
+          title: "Online Tournament",
           headerTintColor: '#4d64ff',
           headerStyle: {
             backgroundColor: '#0c155b',
@@ -295,6 +328,91 @@ function ScreensStack() {
           headerRight: () => (<EsportsLogo />)
         }}
       />
+      <Stack.Screen
+        name="TimeZones"
+        component={TimeZones}
+        options={{
+          title: "Time Zones  ",
+          headerTintColor: '#060b30',
+          headerStyle: {
+            backgroundColor: '#46b0fb',
+          },
+          headerRight: () => (<MySpaceLogo />)
+        }}
+      />
+      <Stack.Screen
+        name="ChooseGame"
+        component={ChooseGame}
+        options={{
+          title: "ChooseGame",
+          headerTintColor: '#060b30',
+          headerStyle: {
+            backgroundColor: '#46b0fb',
+          },
+          headerRight: () => (<MySpaceLogo />)
+        }}
+      />
+      <Stack.Screen
+        name="Snake"
+        component={Snake}
+        options={{
+          title: "Snake",
+          headerTintColor: '#060b30',
+          headerStyle: {
+            backgroundColor: '#46b0fb',
+          },
+          headerRight: () => (<MySpaceLogo />)
+        }}
+      />
+      <Stack.Screen
+        name="CounterStrike"
+        component={CounterStrike}
+        options={{
+          title: "Counter Strike",
+          headerTintColor: '#4156e9',
+          headerStyle: {
+            backgroundColor: '#0c155b',
+          },
+          headerRight: () => (<EsportsLogo />)
+        }}
+      />
+      <Stack.Screen
+        name="FlappyBirdGame"
+        component={FlappyBirdGame}
+        options={{
+          title: "Bouncing ball",
+          headerTintColor: '#4156e9',
+          headerStyle: {
+            backgroundColor: '#0c155b',
+          },
+          headerRight: () => (<EsportsLogo />)
+        }}
+      />
+      <Stack.Screen
+        name="PlayedMatches"
+        component={PlayedMatches}
+        options={{
+          title: "Counter-Strike - Played Matches",
+          headerTintColor: '#4156e9',
+          headerStyle: {
+            backgroundColor: '#0c155b',
+          },
+          headerRight: () => (<EsportsLogo />)
+        }}
+      />
+      <Stack.Screen
+        name="UpcomingMatches"
+        component={UpcomingMatches}
+        options={{
+          title: "Counter-Strike - Upcoming Matches",
+          headerTintColor: '#4156e9',
+          headerStyle: {
+            backgroundColor: '#0c155b',
+          },
+          headerRight: () => (<EsportsLogo />)
+        }}
+      />
+
     </Stack.Navigator>
   )
 }
